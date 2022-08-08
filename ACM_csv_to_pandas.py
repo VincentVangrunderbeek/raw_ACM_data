@@ -36,3 +36,14 @@ def make_dataframe(file_name):
     df.drop('n_or_u', inplace=True, axis=1)
 
     return df
+
+def electrical_quantity(df):
+    currents = ['Current CH1 (nA)', 'Current CH2 (nA)', 'Current CH3 (nA)', 'Current CH4 (nA)']
+    i = 1
+    for column in df[currents]:
+        column_name = 'Electrical Quantity CH' + str(i) + ' (C)'
+        df[column_name] = df[column].cumsum()
+        df[column_name] = df[column_name] * 0.00000006
+        i = i + 1
+
+    return df
