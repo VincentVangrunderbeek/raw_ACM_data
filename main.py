@@ -54,10 +54,10 @@ if create_df:
     except:
         st.info('No folders were selected')
 
-@st.cache
-def convert_df(df):
- # IMPORTANT: Cache the conversion to prevent computation on every rerun
-    return df.to_csv().encode('utf-8')
+# @st.cache
+# def convert_df(df):
+#  # IMPORTANT: Cache the conversion to prevent computation on every rerun
+#     return df.to_csv().encode('utf-8')
 
 @st.cache
 def to_excel(df):
@@ -78,9 +78,9 @@ if 'df' in st.session_state:
     if generate_EDA:
         pr = df.profile_report()
         st_profile_report(pr)
-    csv = convert_df(df)
+    # csv = convert_df(df)
     excel = to_excel(df)
-    st.download_button('📥 Download the ACM data in CSV format', excel, file_name='df_test.xlsx')
+    st.download_button('📥 Download the ACM data in xlsx format', excel, file_name='df_test.xlsx')
 
     fig = go.Figure()
     fig.add_trace(
